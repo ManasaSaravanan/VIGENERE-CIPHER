@@ -1,6 +1,6 @@
-# VIGENERE-CIPHER
 ## EX. NO: 4
- 
+## MANASA S
+## 212224220059
 
 ## IMPLEMETATION OF VIGENERE CIPHER
  
@@ -30,7 +30,47 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
+void generateKey(char *plaintext, char *key, char *newKey) {
+    int pLen = strlen(plaintext), kLen = strlen(key), i, j;
+    for (i = 0, j = 0; i < pLen; i++, j++) {
+        if (j == kLen) j = 0;
+        newKey[i] = key[j];
+    }
+    newKey[i] = '\0';
+}
+
+void encrypt(char *plaintext, char *key, char *ciphertext) {
+    int i;
+    for (i = 0; plaintext[i] != '\0'; i++) {
+        ciphertext[i] = ((toupper(plaintext[i]) - 'A') + (toupper(key[i]) - 'A')) % 26 + 'A';
+    }
+    ciphertext[i] = '\0';
+}
+
+int main() {
+    char plaintext[100], key[100], newKey[100], ciphertext[100];
+
+    printf("Enter Plaintext: ");
+    scanf("%s", plaintext);
+    printf("Enter Key: ");
+    scanf("%s", key);
+
+    generateKey(plaintext, key, newKey);
+    encrypt(plaintext, newKey, ciphertext);
+
+    printf("Ciphertext: %s\n", ciphertext);
+
+    return 0;
+}
+```
 ## OUTPUT
+<img width="1538" height="982" alt="Screenshot 2025-09-03 102130" src="https://github.com/user-attachments/assets/0a628a01-644b-46e8-ba62-4b62445b732e" />
+
 
 ## RESULT
+The program is executed successfully.
